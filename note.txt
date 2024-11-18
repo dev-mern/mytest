@@ -1,0 +1,21 @@
+const SSR_Page = async () => {
+    const data = await fetch(`http://localhost:5000/shoes`,{
+        cache: "no-store"
+    }).then(res=>res.json())
+
+
+const SSG_Page = async () => {
+    const data = await fetch(`http://localhost:5000/shoes`,{
+        cache: "force-cache"
+    }).then(res=>res.json())
+    console.log(data);
+
+
+const ISR_Page = async () => {
+    const data = await fetch(`http://localhost:5000/shoes`,{
+        next:{
+            revalidate: 10,
+        }
+    }).then(res=>res.json())
+    console.log(data);
+
